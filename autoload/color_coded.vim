@@ -151,9 +151,9 @@ EOF
 endfunction!
 
 function! color_coded#exit()
-  if g:color_coded_enabled == 0
-    return
-  endif
+  " if g:color_coded_enabled == 0
+    " return
+  " endif
 lua << EOF
   color_coded_exit()
 EOF
@@ -171,6 +171,9 @@ EOF
 endfunction!
 
 function! color_coded#toggle()
+  if g:color_coded_enabled == 1
+    call color_coded#destroy()
+  endif
   let g:color_coded_enabled = g:color_coded_enabled ? 0 : 1
   if g:color_coded_enabled == 0
     call color_coded#clear_all_matches()
